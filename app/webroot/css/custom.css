@@ -1,0 +1,23 @@
+.navbar-inner {
+
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+
+}
+
+.navbar-inverse .navbar-inner {
+    background-color: black;
+    background-image: -moz-linear-gradient(top, black, black);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(black), to(black));
+    background-image: -webkit-linear-gradient(top, #222222, #111111);
+    background-image: -o-linear-gradient(top, black, black);
+    background-image: linear-gradient(to bottom, black, black);
+    background-repeat: repeat-x;
+    border-color: black;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
+}
+
+h1,h2,h3,h4,h5,h6{
+    color:black;
+}
