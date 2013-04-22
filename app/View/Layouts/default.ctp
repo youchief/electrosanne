@@ -30,7 +30,7 @@ $cakeDescription = __d('cake_dev', 'ELECTROSANNE: festival de la culture électr
         echo $this->Html->meta('icon');
 
         echo $this->Html->css(array('bootstrap', 'bootstrap-responsive', 'custom'));
-        echo $this->Html->script(array('jquery.min', 'bootstrap.min'));
+        echo $this->Html->script(array('jquery.min', 'bootstrap.min', 'jquery.isotope'));
 
         echo $this->fetch('meta');
         echo $this->fetch('css');

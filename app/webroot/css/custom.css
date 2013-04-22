@@ -21,3 +21,20 @@
 h1,h2,h3,h4,h5,h6{
     color:black;
 }
+
+.thumbnail{
+    border:none;
+}
+
+.isotope-item {
+  z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+.selected{
+    color: black;
+}
