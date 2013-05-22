@@ -24,7 +24,7 @@
             <li class="span2">
                 <div class="thumbnail thursday mad">
                     <?php echo $this->Html->image('KRAFTWERK.jpg'); ?>
-                    <b>Kraftwerk</b>
+                    <?php echo $this->Html->link('Kraftwerk', '/pages/artist');?>
                     <p>Mad - Jeudi 23h</p>
                 </div>
             </li>
