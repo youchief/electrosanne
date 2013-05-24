@@ -18,7 +18,7 @@
                         <li><?php echo $this->Html->link(__('Sunday'), "/artists") ?></li>
                     </ul>
                 </li>
-                <li><?php echo $this->Html->link(__('ARTISTS'), array('controller'=>'pages', 'action'=>'display', 'artists')) ?></li>
+                <li><?php echo $this->Html->link(__('ARTISTS'), array('controller'=>'artists', 'action'=>'index')) ?></li>
                 <li><?php echo $this->Html->link(__('TICKETS'), "/tickets") ?></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle"

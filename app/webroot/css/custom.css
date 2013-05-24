@@ -24,6 +24,8 @@ h1,h2,h3,h4,h5,h6{
 
 .thumbnail{
     border:none;
+    height:200px;
+    width:152px;
 }
 
 .isotope-item {
@@ -38,3 +40,4 @@ h1,h2,h3,h4,h5,h6{
 .selected{
     color: black;
 }
+

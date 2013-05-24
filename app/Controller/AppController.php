@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application level Controller
  *
@@ -20,7 +21,7 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-App::uses('Controller', 'Controller');
+App::uses('TroisAppController', 'Trois.Controller');
 
 /**
  * Application Controller
@@ -31,5 +32,37 @@ App::uses('Controller', 'Controller');
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
+class AppController extends TroisAppController {
+
+        public $components = array(
+            'Session',
+            'Auth' => array(
+                //'loginRedirect' => array('controller' => 'users', 'action' => 'index', 'admin' => true, 'plugin' => 'trois' ),
+                //'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')
+                'authenticate' => array(
+                    'Form' => array(
+                        'fields' => array('username' => 'email')
+                    )
+                ),
+                'loginAction' => array(
+                    'controller' => 'Users',
+                    'action' => 'login',
+                    'plugin' => 'trois'
+                ),
+            ),
+            'RequestHandler',
+        );
+        public $helpers = array('Trois.Media', 'Trois.Storage');
+
+        public function beforeFilter() {
+                parent::beforeFilter();
+                $this->Auth->allow(array('login'));
+//                if (array_key_exists('language', $this->request->params))
+//                        Configure::write('Config.language', $this->request->params['language']);
+        }
+
+//        public function redirect($url, $status = null, $exit = true) {
+//                parent::redirect(router_url_language($url), $status, $exit);
+//        }
+
 }

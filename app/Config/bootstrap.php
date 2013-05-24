@@ -107,3 +107,76 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+
+
+
+// trois
+CakePlugin::load('Trois', array('bootstrap' => true,'routes'=>true));
+
+
+Configure::write('Trois.backendMenu', array(
+    
+    'Gestion du site'           =>array(        
+        'dropdown'          =>array(    
+            
+            'Artsits'                      => array('controller'=>'artists','action'=>'index', 'plugin' => false),
+            'Contacts'                      => array('controller'=>'contacts','action'=>'index', 'plugin' => false),
+            'Editions'                      => array('controller'=>'editions','action'=>'index', 'plugin' => false),
+            'Events'                      => array('controller'=>'events','action'=>'index', 'plugin' => false),
+            'Invitations'                      => array('controller'=>'invitations','action'=>'index', 'plugin' => false),
+            'Locations'                      => array('controller'=>'locations','action'=>'index', 'plugin' => false),
+            'News'                      => array('controller'=>'news','action'=>'index', 'plugin' => false),
+            'Partners'                      => array('controller'=>'partners','action'=>'index', 'plugin' => false),
+            'Subscriptions'                      => array('controller'=>'subscriptions','action'=>'index', 'plugin' => false),
+            'Tickets'                      => array('controller'=>'tickets','action'=>'index', 'plugin' => false),
+            
+            
+            
+        )
+    ),
+    
+    
+    /** functionalities in Trois plugin boy!!! **/
+    'Medias'                => array(
+        
+        'dropdown' => array(
+            'Bibliothèque'             => array('controller'=>'Mediafiles', 'action' => 'index', 'admin' => true, 'plugin' => 'trois' ),
+            'Téléverser des fichiers' => array('controller'=>'Mediafiles', 'action' => 'upload', 'admin' => true, 'plugin' => 'trois' ),
+            'Gestion des tags'          => array('controller'=>'MediaTags', 'action' => 'index', 'admin' => true, 'plugin' => 'trois' ),
+            'Utilisation'          => array('controller'=>'Mediafiles', 'action' => 'usage', 'admin' => true, 'plugin' => 'trois' ),
+        )
+    ),
+    
+    'Utilisateurs' => array(
+        'dropdown' => array(
+            'Utilisateurs'          => array('controller'=>'Users', 'action' => 'index', 'admin' => true, 'plugin' => 'trois' ),
+            'Groupes'               => array('controller'=>'Groups', 'action' => 'index', 'admin' => true, 'plugin' => 'trois' ),
+        )
+    )
+    
+    
+    
+));
+
+// Languages settings by cousteau ;)
+
+Configure::write('Config.languages', array('eng','fra') );
+Configure::write('Config.language', 'eng');
+define('DEFAULT_LANGUAGE', 'eng');
+function router_url_language($url) {
+    if ($lang = Configure::read('Config.language')) {
+        if (is_array($url)) {
+            if (!isset($url['language'])) {
+                $url['language'] = $lang;
+            }
+            if ($url['language'] == DEFAULT_LANGUAGE) {
+                unset($url['language']);
+            }
+        } else if ($url == '/' && $lang !== DEFAULT_LANGUAGE) {
+            $url.= $lang;
+        }
+    }
+
+    return $url;
+}
