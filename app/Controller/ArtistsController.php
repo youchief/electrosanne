@@ -9,6 +9,8 @@ App::uses('AppController', 'Controller');
  */
 class ArtistsController extends AppController {
 
+        public $helpers = array('Time');
+
         /**
          * admin_index method
          *
@@ -19,29 +21,29 @@ class ArtistsController extends AppController {
                 if (empty($this->request->data)) {
                         $this->set('artists', $this->paginate());
                 } else {
-                        $artists = $this->paginate(array('Artist.name like ' => '%' . $this->request->data['Artist']['name']."%"));
+                        $artists = $this->paginate(array('Artist.name like ' => '%' . $this->request->data['Artist']['name'] . "%"));
                         $this->set('artists', $artists);
                         if (empty($artists)) {
                                 $this->Session->setFlash(__('No result, please try again!'));
                         }
                 }
         }
-        
+
         public function index() {
-               $this->Artist->recursive = 2; 
-               $artists = $this->Artist->find('all');
-               $this->set('artists', $artists);
+                $this->Artist->recursive = 2;
+                $artists = $this->Artist->find('all');
+                $this->set('artists', $artists);
         }
-        
+
         public function view($id = null) {
                 if (!$this->Artist->exists($id)) {
                         throw new NotFoundException(__('Invalid artist'));
                 }
+                $this->Artist->recursive = 2;
                 $options = array('conditions' => array('Artist.' . $this->Artist->primaryKey => $id));
                 $artist = $this->Artist->find('first', $options);
                 $this->set('artist', $artist);
                 $this->set('mediafiles', $artist['Artist']['media']);
-                
         }
 
         /**
@@ -59,7 +61,6 @@ class ArtistsController extends AppController {
                 $artist = $this->Artist->find('first', $options);
                 $this->set('artist', $artist);
                 $this->set('mediafiles', $artist['Artist']['media']);
-                
         }
 
         /**
@@ -93,7 +94,7 @@ class ArtistsController extends AppController {
                         throw new NotFoundException(__('Invalid artist'));
                 }
                 if ($this->request->is('post') || $this->request->is('put')) {
-                        if ($this->Artist->save($this->request->data)) {
+                        if ($this->Artist->saveAssociated($this->request->data)) {
                                 $this->Session->setFlash(__('The artist has been saved'));
                                 $this->redirect(array('action' => 'index'));
                         } else {
@@ -101,8 +102,10 @@ class ArtistsController extends AppController {
                         }
                 } else {
                         $options = array('conditions' => array('Artist.' . $this->Artist->primaryKey => $id));
-                        $this->request->data = $this->Artist->find('first', $options);
+                        //$this->Artist->unbindModel($options)
+                        $this->request->data = $this->Artist->read(null, $id);
                 }
+                $this->Artist->Event->recursive = -1;
                 $events = $this->Artist->Event->find('list');
                 $this->set(compact('events'));
         }

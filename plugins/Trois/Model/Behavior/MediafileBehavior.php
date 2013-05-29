@@ -21,7 +21,7 @@ class MediafileBehavior extends ModelBehavior {
                 $mediaLink = new MediaLink();
                 $mediaLink->deleteAll(array('MediaLink.foreign_key' => $model->id, 'MediaLink.foreign_model' => $model->alias), false);
         }
-
+        
         public function afterFind(&$model, $results, $primary) {
                 foreach ($results as &$result) {
                         foreach ($result as $model_name => &$r) {
@@ -31,7 +31,7 @@ class MediafileBehavior extends ModelBehavior {
                                         else {
 
                                                 if (!empty($model->$model_name->actsAs['Trois.Mediafile'])) {
-                                                        if ($model->recursive > 0) {
+                                                        if ($model->recursive > 1) {
                                                                 if (array_key_exists($model_name, $model->belongsTo) || array_key_exists($model_name, $model->hasOne))
                                                                         $this->_performSingleSearch($model->$model_name, $r);
 

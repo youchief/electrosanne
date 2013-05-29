@@ -20,38 +20,40 @@ $cakeDescription = __d('cake_dev', 'ELECTROSANNE: festival de la culture électr
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <?php echo $this->Html->charset(); ?>
-        <title>
-            <?php echo $cakeDescription ?>:
-            <?php echo $title_for_layout; ?>
-        </title>
-        <?php
-        echo $this->Html->meta('icon');
+        <head>
+                <?php echo $this->Html->charset(); ?>
+                <title>
+                        <?php echo $cakeDescription ?>:
+                        <?php echo $title_for_layout; ?>
+                </title>
+                <?php
+                echo $this->Html->meta('icon');
 
-        echo $this->Html->css(array('bootstrap', 'bootstrap-responsive', 'custom'));
-        echo $this->Html->script(array('jquery.min', 'bootstrap.min', 'jquery.isotope'));
+                echo $this->Html->css(array('bootstrap', 'bootstrap-responsive', 'custom'));
+                echo $this->Html->script(array('jquery.min', 'bootstrap.min', 'jquery.isotope'));
 
-        echo $this->fetch('meta');
-        echo $this->fetch('css');
-        echo $this->fetch('script');
-        ?>
-    </head>
-    <body>
-        <div class="container">
-            <div id="header">
-                <h2><?php echo $this->Html->image('logo.png'); ?></h2>
-                <?php echo $this->element('menu');?>
-            </div>
-            <div id="content">
-                <?php echo $this->Session->flash(); ?>
-                <?php echo $this->fetch('content'); ?>
-            </div>
-            <hr>
-            <div id="footer">
-                powered by 3xW
-            </div>
-        </div>
-        <?php echo $this->element('sql_dump'); ?>
-    </body>
+                echo $this->fetch('meta');
+                echo $this->fetch('css');
+                echo $this->fetch('script');
+                ?>
+        </head>
+        <body>
+                <div class="container">
+                        <div id="header">
+                                <h2><?php echo $this->Html->image('logo.png'); ?></h2>
+                                <?php echo $this->element('lang_selection');?>
+                                <?php echo $this->element('menu'); ?>
+                                
+                        </div>
+                        <div id="content" class="scroll">
+                                <?php echo $this->Session->flash(); ?>
+                                <?php echo $this->fetch('content'); ?>
+                        </div>
+                        <hr>
+                        <div id="footer">
+                                powered by 3xW
+                        </div>
+                </div>
+                <?php echo $this->element('sql_dump'); ?>
+        </body>
 </html>

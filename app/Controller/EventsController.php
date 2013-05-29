@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('CakeTime', 'Utility');
 
 /**
  * Events Controller
@@ -112,6 +113,18 @@ class EventsController extends AppController {
                 }
                 $this->Session->setFlash(__('Event was not deleted'));
                 $this->redirect(array('action' => 'index'));
+        }
+
+        public function day($day) {
+                $this->Event->recursive = 0;
+                $from =  date("Y-m-d H:i", (strtotime($day) + (10 * 60 * 60)));
+                $to  = date("Y-m-d H:i", (strtotime($day) + (29 * 60 * 60)));
+                
+                $conditions  = array('Event.date  BETWEEN ? AND ?' => array($from,$to));
+
+                $events = $this->Event->find('all', array('conditions' =>$conditions));
+                $this->set('events', $events);
+                $this->set('day', $day);
         }
 
 }

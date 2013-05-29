@@ -57,8 +57,16 @@ class AppController extends TroisAppController {
         public function beforeFilter() {
                 parent::beforeFilter();
                 $this->Auth->allow(array('login'));
+                if ($this->Session->check('Config.language')) {
+                        Configure::write('Config.language', $this->Session->read('Config.language'));
+                }
 //                if (array_key_exists('language', $this->request->params))
 //                        Configure::write('Config.language', $this->request->params['language']);
+        }
+        
+        public function lang_selection($lang){
+                $this->Session->write('Config.language', $lang);
+                $this->redirect($this->referer());
         }
 
 //        public function redirect($url, $status = null, $exit = true) {

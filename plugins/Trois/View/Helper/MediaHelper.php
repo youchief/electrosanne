@@ -6,11 +6,7 @@ class MediaHelper extends AppHelper {
 
     public $helpers = array('Html');
 
-    public function input($model, $field) {
-        
-         App::import('Model', $model);
-        $modelInstance = new $model();
-        $type = $modelInstance->actsAs['Trois.Mediafile']['fields'][$field];
+    public function input($model, $field,$type) {
         return $this->_View->element('helper/input', array('model'=>$model,'field'=>$field,'type'=>$type), array('plugin'=>'Trois'));
     }
 

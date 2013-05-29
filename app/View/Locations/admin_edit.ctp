@@ -5,7 +5,10 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
-		echo $this->Form->input('description');
+		
+                                        foreach (Configure::read('Config.languages') as $key => $lng) {
+                                                echo $this->Form->input('Location.description.' . $lng, array('label' => 'Description (' . $lng . ')', 'type' => 'textarea', 'value' => $this->request->data['descriptionTranslation'][$key]['content']));
+                                        }
 		echo $this->Form->input('url');
 		echo $this->Form->input('size');
 		echo $this->Form->input('latitude');

@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'electrosanne_2013_bblack';
+    src: url('electrosanne-2013-black-02-webfont.eot');
+    src: url('electrosanne-2013-black-02-webfont.eot?#iefix') format('embedded-opentype'),
+         url('electrosanne-2013-black-02-webfont.woff') format('woff'),
+         url('electrosanne-2013-black-02-webfont.ttf') format('truetype'),
+         url('electrosanne-2013-black-02-webfont.svg#electrosanne_2013_bblack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 .navbar-inner {
 
     -webkit-border-radius: 0px;
@@ -20,6 +32,7 @@
 
 h1,h2,h3,h4,h5,h6{
     color:black;
+    font-family: 'electrosanne_2013_bblack';
 }
 
 .thumbnail{
@@ -41,3 +54,10 @@ h1,h2,h3,h4,h5,h6{
     color: black;
 }
 
+
+.lang_selection{
+        text-align: right;
+}
+.lang_selection a{
+        color:black;
+}

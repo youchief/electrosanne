@@ -1,6 +1,12 @@
 <div class="row-fluid">
         <div class="span6">
                 <h1><?php echo $artist['Artist']['name']; ?></h1>
+                <h4><?php foreach ($artist['Event'] as $event): ?>
+                                <?php echo $event['Location']['name']; ?>
+                                <?php echo $this->Time->nice($event['date']); ?>
+                                <br>      
+                        <?php endforeach; ?>
+                </h4>
                 <p><?php echo h($artist['Artist']['description']); ?></p>
                 <dl>
 
@@ -41,15 +47,15 @@
                 ?>
                 <?php
                 if (($i % 2) == 1) {
-                       echo "</div>";
-                       echo '<div class="row-fluid">';
+                        echo "</div>";
+                        echo '<div class="row-fluid">';
                 }
                 ?>
 
                 <div class="span6">
-        <?php echo $media['Mediafile']['embed']; ?>
+                        <?php echo $media['Mediafile']['embed']; ?>
                 </div>
-<?php endforeach; ?>
-
-
+        <?php endforeach; ?>
 </div>
+
+

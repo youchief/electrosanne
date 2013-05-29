@@ -15,6 +15,18 @@ class Artist extends AppModel {
          * @var string
          */
         public $displayField = 'name';
+        
+         public $actsAs = array(
+            'Trois.Mediafile' => array(
+                'fields' => array(
+                    'media'=>'embed',
+                    'image' => 'file'
+                )
+            ),
+            'Translate' => array(
+                'description' => 'descriptionTranslation',
+            )
+        );
 
         /**
          * Validation rules
@@ -33,14 +45,7 @@ class Artist extends AppModel {
                 ),
             ),
         );
-        public $actsAs = array(
-            'Trois.Mediafile' => array(
-                'fields' => array(
-                    'media'=>'embed',
-                    'image' => 'file'
-                )
-            )
-        );
+      
 
 
 

@@ -1,13 +1,6 @@
 <div class="row-fluid">
         <div class="span12">
-                <h1>ARTISTS</h1>
-                <div class="btn-group filter option-set clearfix " data-filter-group="day">
-                        <button class="btn"><a href="#" data-filter-value="">ALL</a></button>
-                        <button class="btn"><a href="#" data-filter-value=".06-09-12">THURSDAY</a></button>
-                        <button class="btn"><a href="#" data-filter-value=".07-09-12">FRIDAY</a></button>
-                        <button class="btn"><a href="#" data-filter-value=".08-09-12">SATURDAY</a></button>
-                        <button class="btn"><a href="#" data-filter-value=".09-09-12">SUNDAY</a></button>
-                </div>
+                <h1><?php echo $this->Time->format('l', $day) ;?></h1>
                 <div class="btn-group filter option-set clearfix " data-filter-group="location">
                         <button class="btn"><a href="#" data-filter-value="">ALL</a></button>
                         <button class="btn"><a href="#" data-filter-value=".Mad">MAD</a></button>
@@ -19,32 +12,31 @@
                 </div>
         </div>
 </div>
-<hr>
+
 <div class="row-fluid">
-        <div id="artists">
+        <div id="events">
+                <?php foreach($events as $event):?>
 
-                <?php foreach ($artists as $artist): ?> 
-
-                        <div class="thumbnail <?php echo $artist['Event'][0]['Location']['name'] ?> <?php echo date('d-m-y', strtotime($artist['Event'][0]['date'])) ?>">
+                        <div class="thumbnail <?php echo $event['Location']['name']?>">
                                 <?php
                                 echo $this->Html->image('../../' . $this->Media->thumb(array(
-                                            'image' => $artist['Artist']['image'][0]['Mediafile']['src'],
+                                            'image' => $event['Event']['image'][0]['Mediafile']['src'],
                                             'width' => 150,
                                             'cropratio' => '16:10'
                                         )));
                                 ?>
-                                <b><?php echo $this->Html->link($artist['Artist']['name'], array('controller'=>'artists', 'action'=>'view', $artist['Artist']['id']))?></b>
-                                <p><?php echo $artist['Event'][0]['Location']['name'] . " " . date('d-m-y h:i', strtotime($artist['Event'][0]['date'])) ?></p>
+                                <b><?php echo $event['Event']['name'] ;?></b>
+                                <p><?php echo $event['Location']['name']." ".$this->Time->format('H:i', $event['Event']['date']) ;?></p>
                         </div>
-
-
+                
 <?php endforeach; ?>
         </div>
 </div>
+
 <script>
         $(function(){
     
-                var $container = $('#artists'),
+                var $container = $('#events'),
                 filters = {};
 
                 $container.isotope({

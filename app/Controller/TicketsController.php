@@ -16,6 +16,11 @@ class TicketsController extends AppController {
 		$this->Ticket->recursive = 0;
 		$this->set('tickets', $this->paginate());
 	}
+        
+                public function index() {
+		$this->Ticket->recursive = 0;
+		$this->set('tickets', $this->paginate());
+	}
 
 /**
  * admin_view method

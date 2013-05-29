@@ -11,6 +11,8 @@
 		echo $this->Form->input('location_id');
 		echo $this->Form->input('event_type_id');
 		echo $this->Form->input('Artist');
+                                   echo $this->Media->input('Event', 'media');
+                                   echo $this->Media->input('Event', 'image');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
